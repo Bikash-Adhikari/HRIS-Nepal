@@ -1,0 +1,1608 @@
+PROJECT: COMPLETE HUMAN RESOURCE INFORMATION SYSTEM (HRIS) WITH NEPAL PAYROLL
+
+1. Your Role
+
+Act as a senior full-stack web application developer, software architect, UI/UX designer, database designer, and Nepal payroll and HR compliance specialist.
+
+Develop a complete, secure, responsive, and production-ready Human Resource Information System (HRIS) web application with integrated payroll management specifically designed for organizations operating in Nepal.
+
+The application must use:
+
+Frontend: HTML5, CSS3, JavaScript, and a modern responsive UI.
+
+Backend: Google Apps Script.
+
+Database: Google Sheets.
+
+File Storage: Google Drive.
+
+Authentication: Secure, role-based authentication for administrators and staff.
+
+Hosting: Google Apps Script Web App.
+
+Deployment: Google Apps Script connected to Google Sheets and Google Drive.
+
+The system must be usable on desktop computers, laptops, tablets, and mobile phones.
+
+Do not create only a UI prototype or a demonstration. Develop a complete working application with functional forms, database operations, validation, calculations, authentication, approval workflows, reports, and deployment instructions.
+
+2. System Architecture
+
+Create a centralized web application using Google Sheets as the primary database and Google Drive for storing employee documents and uploaded files.
+
+Google Sheets
+
+Create a master spreadsheet containing separate sheets for:
+
+CompanySettings
+
+Users
+
+Employees
+
+Departments
+
+Designations
+
+Attendance
+
+LeaveTypes
+
+LeaveApplications
+
+LeaveBalances
+
+Holidays
+
+PayrollSettings
+
+SalaryStructures
+
+PayrollRuns
+
+PayrollDetails
+
+TaxSettings
+
+SSFSettings
+
+AdvancesAndLoans
+
+BonusesAndAllowances
+
+Deductions
+
+Documents
+
+PerformanceReviews
+
+TrainingRecords
+
+ResignationsAndTerminations
+
+AuditLogs
+
+Notifications
+
+Define the columns, data types, primary identifiers, relationships, validation rules, and default values for every sheet.
+
+Use unique employee IDs and transaction IDs. Do not use employee names as database keys.
+
+Prevent duplicate employee records, duplicate payroll processing, and conflicting leave transactions.
+
+Google Drive
+
+Automatically create a structured folder system:
+
+HRIS/
+Employee_Photos/
+Employee_Documents/
+Contracts/
+Payroll_Reports/
+Payslips/
+Leave_Documents/
+Attendance_Reports/
+Company_Documents/
+Backup_Exports/
+
+Allow authorized administrators to upload, view, replace, and manage employee documents.
+
+Staff members must not have unrestricted access to other employees' documents or payroll files.
+
+Store file IDs and relevant metadata in Google Sheets rather than relying only on publicly accessible file URLs.
+
+Do not make employee photos, personal documents, or payslips publicly accessible.
+
+3. Login and User Management
+
+Develop two primary user roles.
+
+A. Administrator Login
+
+Administrators should have access to all authorized HR and payroll management functions.
+
+Administrator features:
+
+Secure login and logout.
+
+Dashboard showing total employees, active employees, attendance, pending leave requests, upcoming birthdays, and payroll summaries.
+
+Create, edit, view, deactivate, and archive employee records.
+
+Assign employee IDs, departments, designations, and reporting managers.
+
+Create and manage staff login accounts.
+
+Assign roles and permissions.
+
+Reset staff access through a secure process.
+
+Configure working days, office hours, holidays, and leave policies.
+
+Configure salary structures, allowances, deductions, tax settings, and SSF settings.
+
+Process and approve payroll.
+
+View organization-wide attendance and leave reports.
+
+Upload and manage company documents.
+
+Generate employee reports, payroll reports, and payslips.
+
+View audit logs.
+
+Export authorized reports to Excel-compatible files or PDF.
+
+Configure company details, logo, address, and fiscal year.
+
+Support least-privilege access so that not every administrator automatically receives permission to view or change all financial information.
+
+B. Staff Login
+
+Each staff member must have an individual account.
+
+Staff features:
+
+Secure login and logout.
+
+View and update permitted personal information.
+
+View their employee profile.
+
+Upload or change their profile photo.
+
+View employment details, department, designation, joining date, and reporting manager.
+
+View their own attendance records.
+
+Apply for leave.
+
+View leave balances and leave history.
+
+Track leave approval status.
+
+View their own salary information and payslips.
+
+Download their own payslips.
+
+View company holidays and announcements.
+
+Upload permitted supporting documents.
+
+Change their password through a secure process.
+
+Receive notifications about leave decisions and published payslips.
+
+Staff must never be able to access another employee's private profile, attendance, salary, payslips, documents, or leave applications by changing a URL, employee ID, or request parameter.
+
+4. Employee Profile Management
+
+Create a detailed employee profile with the following sections.
+
+Personal Information
+
+Employee ID
+
+Full name
+
+Profile photo
+
+Date of birth
+
+Gender, if required
+
+Personal email
+
+Official email
+
+Mobile number
+
+Permanent address
+
+Temporary address
+
+Emergency contact
+
+Marital status, if required
+
+Citizenship details, if required for HR administration
+
+Employment Information
+
+Joining date
+
+Employment type
+
+Department
+
+Designation
+
+Reporting manager
+
+Employment status
+
+Probation start and end dates
+
+Confirmation date
+
+Contract start and end dates
+
+Work location
+
+Working schedule
+
+Resignation date, if applicable
+
+Termination date, if applicable
+
+Bank and Payroll Information
+
+Bank name
+
+Branch
+
+Account holder name
+
+Bank account number
+
+PAN number
+
+SSF number, if applicable
+
+Payroll eligibility
+
+Salary structure
+
+Payment method
+
+Restrict access to banking, PAN, citizenship, and other sensitive information to authorized personnel.
+
+Education and Documents
+
+Allow authorized users to upload and manage:
+
+CV or resume
+
+Citizenship documents
+
+Educational certificates
+
+Employment contracts
+
+Appointment letters
+
+Confirmation letters
+
+Training certificates
+
+Other employment-related documents
+
+Profile Photo Upload
+
+Implement an upload feature that:
+
+Accepts JPG, JPEG, PNG, and WebP images.
+
+Validates the file type and file size.
+
+Displays a preview before upload.
+
+Allows the user to replace their existing photo.
+
+Stores the image in a restricted Google Drive folder.
+
+Saves the Drive file ID against the employee record.
+
+Displays the image on the employee profile and authorized reports.
+
+Prevents unauthorized users from viewing private employee images.
+
+Do not use public Drive sharing as a shortcut for displaying profile pictures.
+
+5. Leave Management System
+
+Develop a complete leave application and approval workflow.
+
+A. Leave Types
+
+Allow administrators to configure leave categories, including:
+
+Annual Leave
+
+Sick Leave
+
+Casual Leave
+
+Maternity Leave
+
+Paternity Leave
+
+Bereavement Leave
+
+Unpaid Leave
+
+Public Holidays
+
+Other organization-specific leave types
+
+Do not hard-code leave entitlements. Make them configurable according to company policy and applicable Nepalese labor requirements.
+
+B. Staff Leave Application
+
+Staff should be able to:
+
+Select the leave type.
+
+Select the start date and end date.
+
+Select full-day or half-day leave where permitted.
+
+Enter the reason for leave.
+
+Upload supporting documents when required.
+
+View the calculated number of leave days.
+
+Submit an application.
+
+View the application status.
+
+Cancel a pending application, subject to policy.
+
+View past leave applications.
+
+The system must automatically calculate leave duration based on the organization's working calendar, applicable weekly holidays, public holidays, half-day rules, and configured leave policies.
+
+Clearly distinguish calendar days from working days.
+
+C. Leave Approval Workflow
+
+Implement the following workflow:
+
+Staff Member → Reporting Manager → HR/Admin → Final Approval, if configured.
+
+Allow administrators to configure a simpler workflow where appropriate.
+
+Each approval stage must support:
+
+Approve
+
+Reject
+
+Request clarification
+
+Add comments
+
+Record action date and time
+
+Identify the person who took the action
+
+Staff members must receive a notification when their application is approved, rejected, or returned for clarification.
+
+D. Leave Balance Management
+
+Automatically maintain:
+
+Opening balance
+
+Annual entitlement
+
+Leave accrued
+
+Leave taken
+
+Pending leave requests
+
+Remaining balance
+
+Carry-forward balance
+
+Leave encashment, if applicable
+
+Do not deduct leave from the confirmed balance merely because a request has been submitted.
+
+Define how pending requests affect available leave and prevent two simultaneous applications from using the same balance.
+
+Update the confirmed leave balance only when the appropriate approval is completed.
+
+Implement leave balance adjustments with an audit trail.
+
+E. Leave Reports
+
+Generate:
+
+Employee-wise leave report
+
+Department-wise leave report
+
+Monthly leave report
+
+Annual leave summary
+
+Pending leave approval report
+
+Unpaid leave report
+
+Leave balance report
+
+Leave history report
+
+Allow reports to be filtered by employee, department, leave type, and date range.
+
+6. Attendance Management
+
+Develop an attendance management module.
+
+Features:
+
+Daily attendance entry
+
+Check-in and check-out
+
+Attendance correction requests
+
+Late arrival tracking
+
+Early departure tracking
+
+Absence tracking
+
+Half-day attendance
+
+Overtime recording
+
+Weekly holidays
+
+Public holiday management
+
+Monthly attendance summaries
+
+Attendance correction approval
+
+Allow administrators to import attendance records from Excel-compatible CSV files.
+
+If browser-based check-in is implemented, record server-generated timestamps and clearly identify the limitations of browser-based location or device verification.
+
+Do not assume that a browser timestamp or client-provided location is reliable proof of physical attendance.
+
+Support manual attendance entry by authorized administrators.
+
+Integrate approved leave records with attendance calculations.
+
+Provide monthly attendance sheets for payroll processing.
+
+7. Nepal Payroll Management
+
+Develop a configurable payroll engine suitable for organizations operating in Nepal.
+
+Payroll calculations must be based on the applicable Nepalese laws, the selected employment category, the relevant fiscal year, and the organization's approved policies.
+
+Do not hard-code tax rates, statutory thresholds, contribution limits, or legal entitlements throughout the code.
+
+Create a centralized configuration module for statutory rules and fiscal-year-specific settings.
+
+A. Salary Structure
+
+Support:
+
+Basic salary
+
+Dearness allowance, if applicable
+
+House rent allowance
+
+Transport allowance
+
+Communication allowance
+
+Meal allowance
+
+Other allowances
+
+Overtime
+
+Bonuses
+
+Festival allowance
+
+Commission or incentives
+
+Employer contributions
+
+Employee deductions
+
+Salary advances
+
+Loan installments
+
+Unpaid leave deductions
+
+Other authorized deductions
+
+Allow each salary component to be configured as taxable or non-taxable, recurring or one-time, and included or excluded from particular statutory contribution calculations where legally applicable.
+
+Do not assume that every allowance has the same tax or SSF treatment.
+
+B. Nepal Income Tax Calculation
+
+Develop a tax calculation engine that supports:
+
+Individual income tax
+
+Relevant resident or non-resident tax treatment, where applicable
+
+Applicable individual tax slabs
+
+Single and couple tax categories, where legally applicable
+
+Annual taxable income
+
+Eligible deductions and exemptions
+
+Tax credits, where applicable
+
+Year-to-date taxable income
+
+Tax already deducted
+
+Estimated annual tax liability
+
+Remaining tax payable
+
+Monthly TDS deduction
+
+Year-end tax reconciliation
+
+The application must allow administrators to select the fiscal year and applicable tax rules.
+
+Include a tax configuration table containing:
+
+Fiscal year
+
+Taxpayer category
+
+Income slab lower limit
+
+Income slab upper limit
+
+Applicable tax rate
+
+Applicable credits or adjustments
+
+Effective date
+
+Official reference
+
+Last updated date
+
+Calculate progressive tax by applying the correct rate to each applicable income slab.
+
+Clearly distinguish gross salary, taxable salary, annual taxable income, tax liability, and monthly tax deduction.
+
+Do not invent current Nepal tax slabs. Verify the applicable rates and rules against official government sources before configuring them.
+
+If verification is unavailable, provide a clearly marked configuration template and require authorized review before payroll can be finalized.
+
+C. Social Security Fund (SSF)
+
+Implement configurable SSF calculations based on the employee's applicable employment and contribution category.
+
+Support separate employee and employer contributions.
+
+Where the applicable formal-sector arrangement requires it, support the commonly used contribution structure of:
+
+Employee contribution: 11% of the applicable contribution base.
+
+Employer contribution: 20% of the applicable contribution base.
+
+Combined contribution: 31% of the applicable contribution base.
+
+These rates must be configurable rather than permanently hard-coded.
+
+The contribution base must be determined according to the applicable SSF rules and employee category. Do not assume that all salary components are included.
+
+Show separately:
+
+Employee SSF deduction
+
+Employer SSF contribution
+
+Total SSF contribution
+
+SSF registration number
+
+Applicable contribution base
+
+Contribution month
+
+Contribution status
+
+Remittance reference
+
+Support employees who are not enrolled in SSF and cases requiring different statutory treatment.
+
+Do not automatically apply SSF to every employee without considering the applicable legal requirements.
+
+D. Other Statutory Deductions
+
+Support configurable calculations for:
+
+Applicable Social Security Tax or other statutory levies
+
+Provident fund, where applicable
+
+CIT contributions, where applicable
+
+Other legally required deductions
+
+Apply only those deductions that are applicable to the employee and relevant fiscal year.
+
+Avoid duplicate deductions for the same statutory obligation.
+
+E. Monthly Payroll Processing
+
+Create a payroll processing workflow:
+
+Select the payroll month and fiscal year.
+
+Retrieve active employees eligible for payroll.
+
+Load their approved salary structures.
+
+Import approved attendance data.
+
+Calculate paid days and unpaid leave.
+
+Calculate salary and applicable allowances.
+
+Calculate overtime and bonuses.
+
+Calculate taxable income.
+
+Calculate income tax and statutory deductions.
+
+Calculate employee SSF contributions.
+
+Calculate employer SSF contributions.
+
+Apply approved advances, loans, and other deductions.
+
+Calculate gross earnings.
+
+Calculate total employee deductions.
+
+Calculate net payable salary.
+
+Generate payroll preview.
+
+Flag missing or inconsistent information.
+
+Submit payroll for review.
+
+Approve payroll through an authorized workflow.
+
+Lock the approved payroll period.
+
+Generate payslips and payroll reports.
+
+Record payment status and payment date.
+
+Export authorized payroll information for accounting purposes.
+
+Show a detailed calculation breakdown for each employee.
+
+Do not silently overwrite an approved payroll run.
+
+If a correction is required after approval, use a controlled adjustment or reversal workflow with authorization and audit logs.
+
+F. Payroll Formula
+
+Display a transparent salary calculation.
+
+Gross Earnings =
+Basic Salary
+
+Applicable Allowances
+
+Overtime
+
+Bonuses
+
+Other Earnings
+
+Net Pay =
+Gross Earnings
+− Employee SSF Contribution
+− Income Tax
+− Other Applicable Employee Deductions
+− Approved Advance or Loan Installments
+− Other Authorized Deductions
+
+Employer contributions must be displayed separately and must not be deducted from employee net pay unless a particular deduction is legally applicable to the employee.
+
+Configure unpaid leave and other salary adjustments according to the approved salary policy and applicable law.
+
+Do not apply the same deduction twice.
+
+G. Payslip Generation
+
+Generate professional PDF payslips containing:
+
+Company logo and name
+
+Company address
+
+Employee name and ID
+
+Department and designation
+
+PAN or SSF information where appropriate
+
+Payroll month
+
+Fiscal year
+
+Paid days
+
+Basic salary
+
+Allowances
+
+Overtime
+
+Bonuses
+
+Gross earnings
+
+Employee SSF deduction
+
+Income tax
+
+Other deductions
+
+Net payable salary
+
+Employer contributions, shown separately
+
+Payment date
+
+Authorized approval details
+
+Store generated payslips in a restricted Google Drive folder.
+
+Allow employees to view and download only their own payslips.
+
+Allow authorized administrators to download individual payslips or generate a batch of payslips for a payroll period.
+
+8. Salary Advances and Loans
+
+Develop an advance and loan management module.
+
+Features:
+
+Record salary advances.
+
+Record employee loans.
+
+Record loan principal.
+
+Record approved interest, if applicable.
+
+Define installment amount and schedule.
+
+Record outstanding balance.
+
+Track repayments through payroll.
+
+Record manual repayments.
+
+Prevent duplicate deductions.
+
+Generate employee-wise outstanding balance reports.
+
+Require authorization for creating, changing, or canceling deductions.
+
+9. Dashboard and Analytics
+
+Create separate dashboards for administrators and staff.
+
+Administrator Dashboard
+
+Display:
+
+Total employees
+
+Active employees
+
+New joiners
+
+Employees on leave
+
+Today's attendance
+
+Absentees
+
+Late arrivals
+
+Pending leave requests
+
+Upcoming contract expirations
+
+Upcoming birthdays
+
+Payroll processing status
+
+Total gross payroll
+
+Total employee deductions
+
+Total net salary payable
+
+Employer SSF contribution
+
+Payroll payment status
+
+Staff Dashboard
+
+Display:
+
+Profile completion
+
+Today's attendance
+
+Remaining leave balances
+
+Pending leave applications
+
+Recent leave history
+
+Latest payslip
+
+Recent attendance history
+
+Company holidays
+
+Announcements
+
+Important notifications
+
+Do not display organization-wide salary data on the staff dashboard.
+
+10. Employee Lifecycle Management
+
+Include:
+
+Employee onboarding
+
+Appointment letter records
+
+Employment contracts
+
+Probation tracking
+
+Confirmation tracking
+
+Promotion history
+
+Department transfers
+
+Designation changes
+
+Salary revision history
+
+Contract renewal reminders
+
+Training records
+
+Performance reviews
+
+Resignation requests
+
+Notice period tracking
+
+Exit clearance
+
+Final settlement calculations
+
+Employee deactivation and archival
+
+Maintain historical employment and salary records rather than replacing the previous values without trace.
+
+Restrict final settlement and termination records to authorized HR and finance personnel.
+
+11. Notifications and Reminders
+
+Implement in-app notifications for:
+
+Leave application submission
+
+Leave approval or rejection
+
+Pending approvals
+
+Upcoming contract expiry
+
+Probation completion
+
+Missing attendance
+
+Payroll approval
+
+Payslip publication
+
+Required document updates
+
+Where feasible, add optional email notifications through Google Apps Script.
+
+Allow authorized administrators to configure notification recipients and templates.
+
+Use scheduled Apps Script triggers for recurring reminders where needed.
+
+Avoid sending duplicate notifications when a scheduled function is retried.
+
+12. Reports and Exports
+
+Develop downloadable reports for:
+
+HR Reports
+
+Employee directory
+
+Employee master report
+
+Department-wise employee report
+
+New joiners
+
+Resigned employees
+
+Contract expiry report
+
+Employee document status
+
+Attendance Reports
+
+Daily attendance
+
+Monthly attendance
+
+Late arrivals
+
+Absence report
+
+Overtime report
+
+Attendance corrections
+
+Leave Reports
+
+Leave applications
+
+Leave balances
+
+Approved leave
+
+Rejected leave
+
+Unpaid leave
+
+Department-wise leave summary
+
+Payroll Reports
+
+Monthly payroll register
+
+Employee-wise salary details
+
+Gross salary report
+
+Net salary report
+
+Income tax report
+
+SSF contribution report
+
+Employer contribution report
+
+Salary deduction report
+
+Loan and advance report
+
+Bank payment statement
+
+Payroll reconciliation
+
+Year-to-date payroll summary
+
+Support:
+
+PDF export
+
+CSV export
+
+Excel-compatible export
+
+Printable reports
+
+Protect sensitive reports with role-based access controls.
+
+13. User Interface and Design
+
+Create a professional, modern HRIS interface.
+
+Design requirements:
+
+Clean administrative dashboard
+
+Responsive sidebar navigation
+
+Top navigation bar
+
+Company logo
+
+Profile photo and account menu
+
+Searchable employee tables
+
+Pagination
+
+Sorting and filtering
+
+Form validation
+
+Clear error messages
+
+Confirmation dialogs
+
+Loading indicators
+
+Success notifications
+
+Mobile-friendly navigation
+
+Accessible colors and typography
+
+Print-friendly payslips and reports
+
+Use a consistent design system throughout the application.
+
+Include a login page, administrator dashboard, staff dashboard, employee profile pages, leave application forms, approval pages, payroll screens, and report pages.
+
+Do not display placeholder buttons that do nothing.
+
+14. Security Requirements
+
+Security is a critical requirement because the system contains confidential employee and financial information.
+
+Implement:
+
+Server-side authentication and authorization.
+
+Role-based access control.
+
+Session expiry and logout.
+
+Password hashing using a suitable cryptographic method if managing passwords directly.
+
+Secure password reset procedures.
+
+Server-side input validation.
+
+Protection against unauthorized data access.
+
+File upload validation.
+
+Restricted Google Drive permissions.
+
+Protection against spreadsheet formula injection in imported data and exports.
+
+Audit logging for sensitive changes.
+
+Duplicate-submission protection.
+
+Payroll approval and locking.
+
+Validation of every employee ID and record access request.
+
+Protection against unauthorized direct function calls.
+
+Appropriate handling of errors without exposing confidential information.
+
+Secure handling of sensitive information and application secrets.
+
+Do not rely on hiding buttons in the frontend for security.
+
+Every sensitive operation must be authorized on the server.
+
+Do not expose the entire Google Sheets database to browser-side JavaScript.
+
+Do not put Google credentials, private keys, passwords, or secrets in client-side code.
+
+Do not use publicly accessible Drive links for employee documents, photos, or payslips.
+
+Explain the security limitations of deploying a Google Apps Script web app, including execution identity, deployment access settings, Google account requirements, and file permissions.
+
+Prefer an appropriate Google identity-based authentication approach where feasible.
+
+If custom authentication is used, implement it securely and explain the necessary controls. Do not claim that a basic email-and-password form alone provides secure authentication.
+
+15. Data Integrity and Audit Logs
+
+Maintain an audit log for important operations.
+
+Record:
+
+Timestamp
+
+User ID
+
+User role
+
+Action performed
+
+Module
+
+Affected record ID
+
+Previous value, where appropriate
+
+New value, where appropriate
+
+Approval or rejection reason
+
+Relevant transaction reference
+
+Log changes to:
+
+Employee details
+
+Salary structures
+
+Bank details
+
+Attendance records
+
+Leave balances
+
+Leave approvals
+
+Payroll calculations
+
+Tax settings
+
+SSF settings
+
+Payroll approvals
+
+Payroll adjustments
+
+User roles and permissions
+
+Do not allow ordinary users to edit or delete audit logs.
+
+Use unique transaction IDs and appropriate locking to reduce concurrent-update conflicts.
+
+Use batch reads and writes where practical to improve Google Sheets performance.
+
+Implement error handling and safe retry logic.
+
+16. Backup and Recovery
+
+Create an administrator-controlled backup process.
+
+Support:
+
+Scheduled spreadsheet backups
+
+Payroll export backups
+
+Important configuration backups
+
+Backup history
+
+Backup timestamps
+
+Restore instructions
+
+Do not overwrite the only backup.
+
+Explain how to restore the application after accidental deletion or corruption.
+
+Make it clear that Google Drive synchronization is not, by itself, a complete disaster-recovery strategy.
+
+17. Nepal Legal and Compliance Configuration
+
+The application is intended for use in Nepal.
+
+Design the system to accommodate applicable requirements relating to:
+
+Nepal Labour Act and Labour Rules
+
+Minimum remuneration
+
+Working hours and overtime
+
+Weekly holidays and public holidays
+
+Annual, sick, and other statutory leave
+
+Festival allowance, where applicable
+
+Income tax and TDS
+
+Social Security Fund contributions
+
+PAN and payroll records
+
+Employment contracts
+
+Final settlement
+
+Applicable record-retention requirements
+
+Verify legal requirements against official Nepal government sources, including the relevant ministries, the Inland Revenue Department, and the Social Security Fund.
+
+Do not assume that all employees have identical entitlements or statutory treatment.
+
+Provide an effective date and source reference for every statutory configuration.
+
+Where the applicable law is uncertain, flag the rule for professional review instead of inventing a legal requirement.
+
+The system must support future changes in Nepalese tax rules, statutory contributions, minimum wages, and leave policies without requiring a complete rewrite.
+
+18. Required Database Design
+
+For every Google Sheets tab, provide:
+
+Sheet name
+
+Column names
+
+Data types
+
+Primary identifier
+
+Relationships
+
+Required fields
+
+Validation rules
+
+Example records
+
+Access permissions
+
+Business rules
+
+Use consistent identifiers across all modules.
+
+Examples:
+
+EMP-0001 for employees
+
+USR-0001 for users
+
+LEAVE-0001 for leave applications
+
+PAY-0001 for payroll runs
+
+IDs must be generated safely and must not be duplicated during concurrent requests.
+
+Use actual date values or a consistent ISO date representation rather than ambiguous date strings.
+
+19. Required Source Code
+
+Provide all necessary application code, separated into clearly named files.
+
+At minimum, consider the following structure:
+
+HRIS/
+Code.gs
+Auth.gs
+Permissions.gs
+Employees.gs
+Attendance.gs
+LeaveManagement.gs
+Payroll.gs
+TaxEngine.gs
+SSF.gs
+Reports.gs
+Notifications.gs
+AuditLogs.gs
+DriveStorage.gs
+Configuration.gs
+Index.html
+Login.html
+AdminDashboard.html
+StaffDashboard.html
+Employees.html
+EmployeeProfile.html
+Attendance.html
+LeaveApplication.html
+LeaveApprovals.html
+PayrollDashboard.html
+PayrollProcessing.html
+Payslip.html
+Reports.html
+Styles.html
+JavaScript.html
+appsscript.json
+README.md
+
+You may reorganize the files if you provide a better maintainable structure suitable for Google Apps Script.
+
+For every file:
+
+Provide the complete code.
+
+Explain its purpose.
+
+Explain its dependencies.
+
+Identify where the code must be pasted.
+
+Ensure function names match across files.
+
+Ensure the frontend and backend are integrated.
+
+Include appropriate validation and error handling.
+
+Avoid omitted sections, unexplained placeholders, and pseudocode in the implementation.
+
+Do not provide only isolated snippets that cannot be assembled into a working application.
+
+If the entire application exceeds one response, divide it into clearly numbered implementation phases. Keep track of the completed files and provide the remaining files in subsequent phases without changing the established architecture unexpectedly.
+
+20. Installation and Deployment Instructions
+
+Provide a complete beginner-friendly guide for Windows users.
+
+Explain every step:
+
+Step 1: Create the Google Spreadsheet
+
+Create a new Google Spreadsheet.
+
+Name it HRIS Database.
+
+Create all required worksheets.
+
+Configure the required headers.
+
+Obtain the spreadsheet ID.
+
+Step 2: Create Google Drive Folders
+
+Create the main HRIS folder.
+
+Create all required subfolders.
+
+Configure appropriate access permissions.
+
+Obtain folder IDs where necessary.
+
+Step 3: Create the Apps Script Project
+
+Open Google Apps Script.
+
+Create a new project.
+
+Add the required source files.
+
+Paste the code into the correct files.
+
+Configure the spreadsheet ID and folder IDs.
+
+Set up project properties and required permissions.
+
+Step 4: Initialize the Database
+
+Create a setup function that:
+
+Creates missing sheets.
+
+Adds column headers.
+
+Configures default values.
+
+Creates initial settings.
+
+Creates an initial administrator account or securely provisions the first administrator.
+
+Creates required Drive folders where authorized.
+
+Validates the database structure.
+
+Avoids overwriting existing employee records.
+
+Explain how to run the setup function and authorize the application.
+
+Step 5: Configure Authentication
+
+Explain how administrators and staff are authenticated.
+
+Explain how the initial administrator account is created, how staff accounts are provisioned, and how access is revoked when an employee leaves.
+
+Step 6: Configure Payroll
+
+Configure the relevant fiscal year.
+
+Enter verified tax slabs.
+
+Configure applicable SSF rates and contribution bases.
+
+Configure company leave policies.
+
+Configure salary structures.
+
+Test payroll calculations with sample employees.
+
+Step 7: Deploy the Web App
+
+Explain:
+
+How to save the project.
+
+How to test it.
+
+How to configure deployment settings.
+
+How to authorize access.
+
+How to deploy the application.
+
+How to obtain the web application URL.
+
+How to manage subsequent versions and deployments.
+
+How to test administrator and staff permissions.
+
+Do not recommend opening the application to anyone with a link if doing so would expose confidential HR information.
+
+Step 8: Testing
+
+Provide a test checklist covering:
+
+Administrator login
+
+Staff login
+
+Incorrect credentials
+
+Unauthorized access
+
+Employee creation
+
+Profile photo upload
+
+Leave application
+
+Leave approval
+
+Leave balance update
+
+Attendance entry
+
+Salary calculation
+
+Income tax calculation
+
+SSF calculation
+
+Payslip generation
+
+Payroll approval
+
+Payroll locking
+
+Report exports
+
+Audit logs
+
+Backup and recovery
+
+21. Mandatory Acceptance Criteria
+
+The final application must satisfy all the following conditions:
+
+An administrator can securely log in.
+
+A staff member can securely log in.
+
+Administrators can create and manage employee records.
+
+Employees can upload profile photos.
+
+Employees can apply for leave.
+
+Authorized managers or administrators can approve or reject leave.
+
+Leave balances update correctly after approval.
+
+Approved leave is reflected in attendance and applicable payroll calculations.
+
+Attendance records can be entered and reported.
+
+Salary structures can be configured.
+
+Nepal payroll can be calculated using verified, configurable rules.
+
+SSF and income tax calculations can be tested independently.
+
+Payslips can be generated and downloaded securely.
+
+Employees can access only their own permitted records.
+
+Payroll reports can be exported.
+
+Sensitive changes are recorded in audit logs.
+
+Uploaded documents are not publicly exposed.
+
+The application works on desktop and mobile devices.
+
+The source code is complete and deployable.
+
+The installation guide is sufficiently detailed for a beginner.
+
+The system handles invalid inputs and common failures gracefully.
+
+Payroll and leave transactions cannot be duplicated accidentally.
+
+Statutory rules can be updated for future fiscal years.
+
+The application does not silently alter previously approved payroll.
+
+Before declaring the project complete, review the implementation against every acceptance criterion and identify any feature that remains incomplete.
+
+22. How You Must Deliver the Project
+
+Work in the following order:
+
+Phase 1: Architecture, security model, database schema, and deployment design.
+
+Phase 2: Google Sheets initialization, Google Drive setup, authentication, and role-based permissions.
+
+Phase 3: Employee management, profile photo uploads, and document management.
+
+Phase 4: Leave management, approval workflows, leave balances, and holidays.
+
+Phase 5: Attendance management and reporting.
+
+Phase 6: Nepal payroll, tax engine, SSF calculations, deductions, and salary structures.
+
+Phase 7: Payslip generation, payroll reports, dashboards, and notifications.
+
+Phase 8: Audit logs, backups, security testing, and performance improvements.
+
+Phase 9: Complete deployment guide, user manual, test cases, and final acceptance checklist.
+
+Begin by presenting the architecture and database schema. Then develop the actual working code module by module.
+
+Do not stop after generating the database schema or frontend.
+
+Do not ask me to implement missing backend functionality myself.
+
+Make reasonable assumptions when necessary, document them, and continue development.
+
+The ultimate goal is a usable, secure, maintainable HRIS and payroll web application for a Nepal-based organization using Google Sheets and Google Drive.

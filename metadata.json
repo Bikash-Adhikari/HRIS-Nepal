@@ -1,0 +1,6 @@
+{
+  "name": "HamroHR - Nepal HRIS & Payroll System",
+  "description": "Comprehensive Human Resource Information System with Nepal Labor Act compliance, SSF, progressive income tax calculations, leave workflows, and Google Sheets/Drive deployment architecture.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
