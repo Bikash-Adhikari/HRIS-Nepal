@@ -90,7 +90,7 @@ export const PayslipModal: React.FC<PayslipModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-start justify-center p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto">
       <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-3xl shadow-2xl overflow-hidden my-6">
         {/* Modal Top Actions */}
         <div className="flex items-center justify-between px-6 py-3 border-b border-slate-800 bg-slate-800/60 print:hidden">

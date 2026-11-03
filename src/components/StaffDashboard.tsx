@@ -25,6 +25,7 @@ interface StaffDashboardProps {
   onCheckOut: (employeeId: string) => void;
   onApplyLeave: () => void;
   onViewPayslip: (detail: any) => void;
+  onViewTaxSlip?: (detail: any, mode?: 'monthly' | 'annual') => void;
   onNavigateTab: (tab: any) => void;
 }
 
@@ -38,6 +39,7 @@ export const StaffDashboard: React.FC<StaffDashboardProps> = ({
   onCheckOut,
   onApplyLeave,
   onViewPayslip,
+  onViewTaxSlip,
   onNavigateTab,
 }) => {
   const today = new Date().toISOString().split('T')[0];
@@ -286,13 +288,35 @@ export const StaffDashboard: React.FC<StaffDashboardProps> = ({
                   NPR {latestPayslipDetail.netPayableSalary.toLocaleString()}
                 </div>
               </div>
-              <button
-                onClick={() => onViewPayslip(latestPayslipDetail)}
-                className="flex items-center space-x-1.5 bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition"
-              >
-                <Eye className="w-3.5 h-3.5" />
-                <span>View Full Payslip</span>
-              </button>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  onClick={() => onViewPayslip(latestPayslipDetail)}
+                  className="flex items-center space-x-1.5 bg-rose-600 hover:bg-rose-500 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition shadow"
+                >
+                  <Eye className="w-3.5 h-3.5" />
+                  <span>Full Payslip</span>
+                </button>
+                {onViewTaxSlip && (
+                  <>
+                    <button
+                      onClick={() => onViewTaxSlip(latestPayslipDetail, 'monthly')}
+                      className="flex items-center space-x-1 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2.5 py-1.5 rounded-lg text-xs font-medium transition"
+                      title="View Monthly TDS Deduction Slip (Section 87)"
+                    >
+                      <FileText className="w-3.5 h-3.5 text-rose-400" />
+                      <span>Monthly Tax Slip</span>
+                    </button>
+                    <button
+                      onClick={() => onViewTaxSlip(latestPayslipDetail, 'annual')}
+                      className="flex items-center space-x-1 bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-slate-700 px-2.5 py-1.5 rounded-lg text-xs font-medium transition"
+                      title="View Annual Tax Clearance Certificate (Annex 10)"
+                    >
+                      <Shield className="w-3.5 h-3.5 text-indigo-400" />
+                      <span>Annual Tax Slip</span>
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3 mt-3">

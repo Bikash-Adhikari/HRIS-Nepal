@@ -28,6 +28,7 @@ interface PayrollModuleProps {
   ) => void;
   onApproveAndLockPayroll: (runId: string) => void;
   onViewPayslip: (detail: PayrollDetail) => void;
+  onViewTaxSlip?: (detail: PayrollDetail, mode?: 'monthly' | 'annual') => void;
   getPayrollDetails: (runId: string) => PayrollDetail[];
   isPayrollModalOpen: boolean;
   setIsPayrollModalOpen: (open: boolean) => void;
@@ -55,6 +56,7 @@ export const PayrollModule: React.FC<PayrollModuleProps> = ({
   onProcessPayroll,
   onApproveAndLockPayroll,
   onViewPayslip,
+  onViewTaxSlip,
   getPayrollDetails,
   isPayrollModalOpen,
   setIsPayrollModalOpen,
@@ -316,13 +318,34 @@ export const PayrollModule: React.FC<PayrollModuleProps> = ({
                       </td>
 
                       <td className="px-4 py-3 text-right">
-                        <button
-                          onClick={() => onViewPayslip(det)}
-                          className="p-1.5 text-indigo-400 hover:text-white hover:bg-slate-800 rounded-lg transition"
-                          title="Generate Official Payslip"
-                        >
-                          <Eye className="w-4 h-4" />
-                        </button>
+                        <div className="flex items-center justify-end space-x-1.5">
+                          <button
+                            onClick={() => onViewPayslip(det)}
+                            className="flex items-center space-x-1 bg-indigo-600 hover:bg-indigo-500 text-white px-2 py-1 rounded-lg text-[11px] font-medium transition"
+                            title="Generate Official Payslip"
+                          >
+                            <Eye className="w-3.5 h-3.5" />
+                            <span>Payslip</span>
+                          </button>
+                          {onViewTaxSlip && (
+                            <>
+                              <button
+                                onClick={() => onViewTaxSlip(det, 'monthly')}
+                                className="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-2 py-1 rounded-lg text-[11px] font-medium transition"
+                                title="View Monthly TDS Slip"
+                              >
+                                TDS Slip
+                              </button>
+                              <button
+                                onClick={() => onViewTaxSlip(det, 'annual')}
+                                className="bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-slate-700 px-2 py-1 rounded-lg text-[11px] font-medium transition"
+                                title="View Annual Tax Clearance Slip (Annex 10)"
+                              >
+                                Annex 10
+                              </button>
+                            </>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   ))}

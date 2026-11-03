@@ -57,22 +57,41 @@ export interface Employee {
   id: string; // EMP-0001
   userId?: string;
   
-  // Personal Info
+  // Personal & Family Info
   fullName: string;
   avatarUrl: string;
   dateOfBirth: string; // YYYY-MM-DD
   gender: 'Male' | 'Female' | 'Other';
   maritalStatus: 'single' | 'couple';
+  bloodGroup?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
+  fatherName?: string;
+  motherName?: string;
+  spouseName?: string;
+  dependentChildrenCount?: number;
   personalEmail: string;
   officialEmail: string;
   phone: string;
+  alternatePhone?: string;
   permanentAddress: string;
   temporaryAddress: string;
   emergencyContactName: string;
   emergencyContactPhone: string;
   emergencyContactRelation: string;
+
+  // National Identity & Legal Documents
   citizenshipNumber: string;
   citizenshipIssuedDistrict: string;
+  citizenshipIssuedDate?: string;
+  nationalIdNumber?: string; // Rastriya Parichayapatra (NID)
+  passportNumber?: string;
+  passportExpiryDate?: string;
+
+  // Education & Professional Background
+  highestEducation?: string; // e.g. "Master in Computer Engineering"
+  universityOrBoard?: string; // e.g. "Tribhuvan University (IOE)"
+  graduationYear?: string;
+  totalPastExperienceYears?: number;
+  previousOrganization?: string;
   
   // Employment Info
   joiningDate: string;
@@ -84,9 +103,10 @@ export interface Employee {
   probationEndDate?: string;
   confirmationDate?: string;
   contractEndDate?: string;
+  noticePeriodDays?: number; // Standard 30 days
   workLocation: string; // Kathmandu, Pokhara, Remote, etc.
   
-  // Bank & Payroll Info
+  // Bank & Statutory Details
   bankName: string;
   bankBranch: string;
   accountHolderName: string;
@@ -94,8 +114,8 @@ export interface Employee {
   panNumber: string;
   isEnrolledInSSF: boolean;
   ssfNumber?: string;
-  citNumber?: string;
-  pfNumber?: string;
+  citNumber?: string; // Citizen Investment Trust (Nagarik Lagani Kosh)
+  pfNumber?: string;  // Employees' Provident Fund (Karmachari Sanchaya Kosh)
   remoteAreaCategory: 'None' | 'A' | 'B' | 'C' | 'D' | 'E';
   isFemaleSoleEmployment: boolean;
   

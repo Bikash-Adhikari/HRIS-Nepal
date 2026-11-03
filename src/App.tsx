@@ -26,6 +26,7 @@ import { AuditLogsModule } from './components/AuditLogsModule';
 import { AppsScriptDeploymentGuide } from './components/AppsScriptDeploymentGuide';
 import { SettingsAndComplianceModule } from './components/SettingsAndComplianceModule';
 import { PayslipModal } from './components/PayslipModal';
+import { TaxSlipModal } from './components/TaxSlipModal';
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState<UserSession>(PRESET_USERS[0]);
@@ -39,6 +40,10 @@ export default function App() {
   const [isApplyLeaveModalOpen, setIsApplyLeaveModalOpen] = useState(false);
   const [isPayrollModalOpen, setIsPayrollModalOpen] = useState(false);
   const [viewingPayslipDetail, setViewingPayslipDetail] = useState<PayrollDetail | null>(null);
+  const [viewingTaxSlipDetail, setViewingTaxSlipDetail] = useState<{
+    detail: PayrollDetail;
+    mode: 'monthly' | 'annual';
+  } | null>(null);
 
   const refreshState = () => {
     setDbState({ ...db.getState() });
@@ -185,6 +190,7 @@ export default function App() {
                 onCheckOut={handleCheckOut}
                 onApplyLeave={() => setIsApplyLeaveModalOpen(true)}
                 onViewPayslip={(detail) => setViewingPayslipDetail(detail)}
+                onViewTaxSlip={(detail, mode = 'monthly') => setViewingTaxSlipDetail({ detail, mode })}
                 onNavigateTab={setCurrentTab}
               />
             )}
@@ -240,6 +246,7 @@ export default function App() {
                 onProcessPayroll={handleProcessPayroll}
                 onApproveAndLockPayroll={handleApproveAndLockPayroll}
                 onViewPayslip={(detail) => setViewingPayslipDetail(detail)}
+                onViewTaxSlip={(detail, mode = 'monthly') => setViewingTaxSlipDetail({ detail, mode })}
                 getPayrollDetails={(runId) => db.getPayrollDetails(runId)}
                 isPayrollModalOpen={isPayrollModalOpen}
                 setIsPayrollModalOpen={setIsPayrollModalOpen}
@@ -268,6 +275,8 @@ export default function App() {
                 payrollRuns={dbState.payrollRuns}
                 getPayrollDetails={(runId) => db.getPayrollDetails(runId)}
                 currentUser={currentUser}
+                onViewPayslip={(detail) => setViewingPayslipDetail(detail)}
+                onViewTaxSlip={(detail, mode = 'monthly') => setViewingTaxSlipDetail({ detail, mode })}
               />
             )}
 
@@ -295,6 +304,17 @@ export default function App() {
           detail={viewingPayslipDetail}
           companySettings={dbState.companySettings}
           onClose={() => setViewingPayslipDetail(null)}
+        />
+      )}
+
+      {/* Official Nepal Tax Slip / IRD Clearance Modal */}
+      {viewingTaxSlipDetail && (
+        <TaxSlipModal
+          detail={viewingTaxSlipDetail.detail}
+          employee={dbState.employees.find((e) => e.id === viewingTaxSlipDetail.detail.employeeId)}
+          companySettings={dbState.companySettings}
+          defaultMode={viewingTaxSlipDetail.mode}
+          onClose={() => setViewingTaxSlipDetail(null)}
         />
       )}
     </div>
